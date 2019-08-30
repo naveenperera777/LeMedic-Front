@@ -19,8 +19,6 @@ import {
   Link,
   NavLink
 } from "react-router-dom";
-import UserList from "../Components/userList";
-import RegisterPatient from "../Components/registerPatient";
 
 const drawerWidth = 240;
 
@@ -49,71 +47,61 @@ export default function ClippedDrawer() {
   const classes = useStyles();
 
   return (
-    <Router>
-      <div className={classes.root}>
-        <CssBaseline />
-        <AppBar position="fixed" className={classes.appBar}>
-          <Toolbar>
-            <Typography variant="h6" noWrap>
-              Clipped drawer
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Drawer
-          className={classes.drawer}
-          variant="permanent"
-          classes={{
-            paper: classes.drawerPaper
-          }}
-        >
-          <div className={classes.toolbar} />
-          <List>
-            <NavLink to={"/register"}>
-              <ListItem button key="fd">
-                <ListItemIcon>
-                  <InboxIcon />
-                </ListItemIcon>
-                <ListItemText primary="Register Patient" />
-              </ListItem>
-            </NavLink>
-
+    <div className={classes.root}>
+      <CssBaseline />
+      <AppBar position="fixed" className={classes.appBar}>
+        <Toolbar>
+          <Typography variant="h6" noWrap>
+            Clipped drawer
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Drawer
+        className={classes.drawer}
+        variant="permanent"
+        classes={{
+          paper: classes.drawerPaper
+        }}
+      >
+        <div className={classes.toolbar} />
+        <List>
+          <NavLink to={"/register"}>
             <ListItem button key="fd">
               <ListItemIcon>
                 <InboxIcon />
               </ListItemIcon>
-              <ListItemText primary="Start Consultation" />
+              <ListItemText primary="Register Patient" />
             </ListItem>
+          </NavLink>
 
-            <NavLink to={"/usermgt"}>
-              <ListItem button key="fd">
-                <ListItemIcon>
-                  <InboxIcon />
-                </ListItemIcon>
-                <ListItemText primary="User Management" />
-              </ListItem>
-            </NavLink>
-          </List>
-          <Divider />
-          <List>
-            {["All mail", "Trash", "Spam"].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-        </Drawer>
-        {/* <main className={classes.content}>
-          <div className={classes.toolbar} />
-          <Typography paragraph>fdf</Typography>
-        </main> */}
-        {/* <switch> */}
-        <Route path="/usermgt" component={UserList} />
-        <Route path="/register" component={RegisterPatient} />
-        {/* </switch> */}
-      </div>
-    </Router>
+          <ListItem button key="fd">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Start Consultation" />
+          </ListItem>
+
+          <NavLink to={"/usermgt"}>
+            <ListItem button key="fd">
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary="User Management" />
+            </ListItem>
+          </NavLink>
+        </List>
+        <Divider />
+        <List>
+          {["All mail", "Trash", "Spam"].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
+    </div>
   );
 }

@@ -62,10 +62,10 @@ import {
   Link,
   NavLink
 } from "react-router-dom";
-import UserProfile from "../Components/userProfile";
 import { Route, Redirect } from "react-router";
+import UserProfile from "../Components/userProfile";
 
-export default function CustomizedTables() {
+export default function CustomizedTables(props) {
   const StyledTableCell = withStyles(theme => ({
     head: {
       backgroundColor: theme.palette.common.black,
@@ -123,51 +123,50 @@ export default function CustomizedTables() {
 
   if (state == "previous") {
     return (
-      <Router>
-        <div>
-          <Paper className={classes.root}>
-            <Table className={classes.table}>
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell>Name</StyledTableCell>
-                  <StyledTableCell align="right">NIC</StyledTableCell>
-                  <StyledTableCell align="right">Email</StyledTableCell>
-                  <StyledTableCell align="right">Sex</StyledTableCell>
-                  <StyledTableCell align="right">Role</StyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {data.map(row => (
-                  <NavLink to={"/usermgt/id"} exact>
-                    <StyledTableRow
-                      key={row.first_name}
-                      onClick={() => setrowUser(row)}
-                    >
-                      <StyledTableCell component="th" scope="row">
-                        {row.first_name} {row.last_name}
-                      </StyledTableCell>
-                      <StyledTableCell align="right">{row.nic}</StyledTableCell>
-                      <StyledTableCell align="right">
-                        {row.email}
-                      </StyledTableCell>
-                      <StyledTableCell align="right">{row.sex}</StyledTableCell>
-                      <StyledTableCell align="right">
-                        {row.role}
-                      </StyledTableCell>
-                    </StyledTableRow>
-                  </NavLink>
-                ))}
-              </TableBody>
-            </Table>
-          </Paper>
-
-          <Route
-            path="/usermgt/id"
-            // component={UserProfile}
-            render={props => <UserProfile {...props} user={rowUser} />}
-          />
-        </div>
-      </Router>
+      // <Router>
+      <div>
+        <Paper className={classes.root}>
+          <Table className={classes.table}>
+            <TableHead>
+              <TableRow>
+                <StyledTableCell>Name</StyledTableCell>
+                <StyledTableCell align="right">NIC</StyledTableCell>
+                <StyledTableCell align="right">Email</StyledTableCell>
+                <StyledTableCell align="right">Sex</StyledTableCell>
+                <StyledTableCell align="right">Role</StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data.map(row => (
+                // <Link to={"/usermgt/id"}>
+                <Link
+                  to={{
+                    pathname: "/usermgt/id",
+                    state: {
+                      user: row
+                    }
+                  }}
+                >
+                  <StyledTableRow
+                    key={row.first_name}
+                    onClick={() => setrowUser(row)}
+                  >
+                    <StyledTableCell component="th" scope="row">
+                      {row.first_name} {row.last_name}
+                    </StyledTableCell>
+                    <StyledTableCell align="right">{row.nic}</StyledTableCell>
+                    <StyledTableCell align="right">{row.email}</StyledTableCell>
+                    <StyledTableCell align="right">{row.sex}</StyledTableCell>
+                    <StyledTableCell align="right">{row.role}</StyledTableCell>
+                  </StyledTableRow>
+                </Link>
+              ))}
+              <Route path="/usermgt/id" component={UserProfile} />
+            </TableBody>
+          </Table>
+        </Paper>
+      </div>
+      // </Router>
     );
   } else {
     return (

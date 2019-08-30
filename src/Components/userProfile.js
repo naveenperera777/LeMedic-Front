@@ -24,7 +24,7 @@ import axios from "axios";
 const useStyles = makeStyles({
   card: {
     maxWidth: 345,
-    marginLeft: 100,
+    marginLeft: 400,
     marginBottom: 30,
     marginTop: 30
   },
@@ -34,6 +34,10 @@ const useStyles = makeStyles({
 });
 
 export default function MediaCard(props) {
+  useEffect(() => {
+    // console.log("props", props.location.state.fromNotifications);
+  }, []);
+
   const [redirect, setRedirect] = useState(false);
   const [open, setOpen] = React.useState(false);
 
@@ -46,9 +50,6 @@ export default function MediaCard(props) {
   }
 
   function handleDeleteClose() {
-    // const result = await axios.delete(" http://localhost:9090/users/delete/6");
-    // const result = await axios("http://localhost:9090/users");
-
     axios
       .delete(`http://localhost:9090/users/delete/${props.user.user_id}`)
       .then(res => {
@@ -68,61 +69,62 @@ export default function MediaCard(props) {
     return <Redirect to="/usermgt" />;
   }
   return (
-    <Router>
-      <Card className={classes.card}>
-        <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            style={{ height: 300 }}
-            image={require("/home/naveen/Documents/MCS/medic-front/medic-front/src/Img/male-character-with-hat-and-camera-free-vector.jpg")}
-            title="Contemplative Reptile"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {props.user.first_name} {props.user.last_name}
-            </Typography>
-            <Typography variant="h6" color="textSecondary" component="p">
-              Consultant Physician
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Medical Officer
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {props.user.email}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
-            Edit
-          </Button>
-          <Button size="small" color="secondary" onClick={handleClickOpen}>
-            Delete
-          </Button>
+    // <Router>
+    <Card className={classes.card}>
+      <CardActionArea>
+        <CardMedia
+          className={classes.media}
+          style={{ height: 300 }}
+          image={require("/home/naveen/Documents/MCS/medic-front/medic-front/src/Img/male-character-with-hat-and-camera-free-vector.jpg")}
+          title="Contemplative Reptile"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            {props.location.state.user.first_name}{" "}
+            {props.location.state.user.last_name}
+          </Typography>
+          <Typography variant="h6" color="textSecondary" component="p">
+            Consultant Physician
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            Medical Officer
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {/* {props.user.email} */}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        <Button size="small" color="primary">
+          Edit
+        </Button>
+        <Button size="small" color="secondary" onClick={handleClickOpen}>
+          Delete
+        </Button>
 
-          <Dialog
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <DialogTitle id="alert-dialog-title">{"Are you sure?"}</DialogTitle>
-            {/* <DialogContent>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{"Are you sure?"}</DialogTitle>
+          {/* <DialogContent>
               <DialogContentText id="alert-dialog-description">
                 Are you sure?
               </DialogContentText>
             </DialogContent> */}
-            <DialogActions>
-              <Button onClick={handleClose} color="primary">
-                No
-              </Button>
-              <Button onClick={handleDeleteClose} color="primary" autoFocus>
-                Yes
-              </Button>
-            </DialogActions>
-          </Dialog>
-        </CardActions>
-      </Card>
-    </Router>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              No
+            </Button>
+            <Button onClick={handleDeleteClose} color="primary" autoFocus>
+              Yes
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </CardActions>
+    </Card>
+    // </Router>
   );
 }
