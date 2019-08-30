@@ -59,10 +59,11 @@ import axios from "axios";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
   Link,
   NavLink
 } from "react-router-dom";
+import UserProfile from "../Components/userProfile";
+import { Route, Redirect } from "react-router";
 
 export default function CustomizedTables() {
   const StyledTableCell = withStyles(theme => ({
@@ -89,9 +90,12 @@ export default function CustomizedTables() {
 
   const useStyles = makeStyles(theme => ({
     root: {
-      width: "100%",
+      // width: "100%",
       marginTop: theme.spacing(3),
-      overflowX: "auto"
+      display: "grid",
+      marginLeft: 100,
+      overflowX: "auto",
+      padding: 100
     },
     table: {
       minWidth: 700
@@ -101,6 +105,8 @@ export default function CustomizedTables() {
   const [data, setData] = useState([]);
   // const [count, setCount] = useState(0);
   const [state, setState] = useState("previous");
+  const [logged, setLogged] = useState(true);
+  const [rowUser, setrowUser] = useState({});
 
   // const [rows, setRows] = useState([]);
 
@@ -119,9 +125,6 @@ export default function CustomizedTables() {
     return (
       <Router>
         <div>
-          <p>fdf</p>
-          <p>fdf</p>
-
           <Paper className={classes.root}>
             <Table className={classes.table}>
               <TableHead>
@@ -135,31 +138,99 @@ export default function CustomizedTables() {
               </TableHead>
               <TableBody>
                 {data.map(row => (
-                  <StyledTableRow
-                    key={row.first_name}
-                    onClick={() => setState("Next")}
-                  >
-                    <StyledTableCell component="th" scope="row">
-                      {row.first_name} {row.last_name}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">{row.nic}</StyledTableCell>
-                    <StyledTableCell align="right">{row.email}</StyledTableCell>
-                    <StyledTableCell align="right">{row.sex}</StyledTableCell>
-                    <StyledTableCell align="right">{row.role}</StyledTableCell>
-                  </StyledTableRow>
+                  <NavLink to={"/usermgt/id"} exact>
+                    <StyledTableRow
+                      key={row.first_name}
+                      onClick={() => setrowUser(row)}
+                    >
+                      <StyledTableCell component="th" scope="row">
+                        {row.first_name} {row.last_name}
+                      </StyledTableCell>
+                      <StyledTableCell align="right">{row.nic}</StyledTableCell>
+                      <StyledTableCell align="right">
+                        {row.email}
+                      </StyledTableCell>
+                      <StyledTableCell align="right">{row.sex}</StyledTableCell>
+                      <StyledTableCell align="right">
+                        {row.role}
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  </NavLink>
                 ))}
               </TableBody>
             </Table>
           </Paper>
-          <p>{state}</p>
 
-          <NavLink to={"/usermgt/id"}>
-            <button onClick={() => setState("Next")}> Click </button>
-          </NavLink>
+          <Route
+            path="/usermgt/id"
+            // component={UserProfile}
+            render={props => <UserProfile {...props} user={rowUser} />}
+          />
         </div>
       </Router>
+    );
+  } else {
+    return (
+      <div>
+        <h1>Lorem Ipsum is simply dummy text</h1>
+        <h2>{rowUser}</h2>
+        {/* <NavLink to={"/usermgt/id"}>
+          <button onClick={() => setState("Next")}> Click </button>
+        </NavLink>
+        <switch>
+          <Route path="/usermgt/id" component={UserProfile} />
+        </switch> */}
+      </div>
     );
   }
 }
 
-// onClick={}
+// import React from "react";
+// import { makeStyles } from "@material-ui/core/styles";
+// import Paper from "@material-ui/core/Paper";
+// import Grid from "@material-ui/core/Grid";
+
+// const useStyles = makeStyles(theme => ({
+//   root: {
+//     flexGrow: 1,
+//     padding: 100
+//     // marginLeft: 300
+//   },
+//   paper: {
+//     padding: theme.spacing(2),
+//     textAlign: "center",
+//     color: theme.palette.text.secondary
+//   }
+// }));
+
+// export default function CenteredGrid() {
+//   const classes = useStyles();
+
+//   return (
+//     <div className={classes.root}>
+//       <Grid container spacing={3}>
+//         <Grid item xs={12}>
+//           <Paper className={classes.paper}>xs=12</Paper>
+//         </Grid>
+//         <Grid item xs={6}>
+//           <Paper className={classes.paper}>xs=6</Paper>
+//         </Grid>
+//         <Grid item xs={6}>
+//           <Paper className={classes.paper}>xs=6</Paper>
+//         </Grid>
+//         <Grid item xs={3}>
+//           <Paper className={classes.paper}>xs=3</Paper>
+//         </Grid>
+//         <Grid item xs={3}>
+//           <Paper className={classes.paper}>xs=3</Paper>
+//         </Grid>
+//         <Grid item xs={3}>
+//           <Paper className={classes.paper}>xs=3</Paper>
+//         </Grid>
+//         <Grid item xs={3}>
+//           <Paper className={classes.paper}>xs=3</Paper>
+//         </Grid>
+//       </Grid>
+//     </div>
+//   );
+// }

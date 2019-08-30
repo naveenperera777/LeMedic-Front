@@ -20,6 +20,7 @@ import {
   NavLink
 } from "react-router-dom";
 import UserList from "../Components/userList";
+import RegisterPatient from "../Components/registerPatient";
 
 const drawerWidth = 240;
 
@@ -67,26 +68,14 @@ export default function ClippedDrawer() {
         >
           <div className={classes.toolbar} />
           <List>
-            {/* {[
-            "Register Patient",
-            "Start Consultation",
-            "My account",
-            "Drafts"
-          ].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))} */}
-
-            <ListItem button key="fd">
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary="Register Patient" />
-            </ListItem>
+            <NavLink to={"/register"}>
+              <ListItem button key="fd">
+                <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon>
+                <ListItemText primary="Register Patient" />
+              </ListItem>
+            </NavLink>
 
             <ListItem button key="fd">
               <ListItemIcon>
@@ -120,9 +109,10 @@ export default function ClippedDrawer() {
           <div className={classes.toolbar} />
           <Typography paragraph>fdf</Typography>
         </main> */}
-        <switch>
-          <Route path="/usermgt" component={UserList} />
-        </switch>
+        {/* <switch> */}
+        <Route path="/usermgt" component={UserList} />
+        <Route path="/register" component={RegisterPatient} />
+        {/* </switch> */}
       </div>
     </Router>
   );
