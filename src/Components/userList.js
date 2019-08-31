@@ -55,6 +55,8 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import Fab from "@material-ui/core/Fab";
+import NavigationIcon from "@material-ui/icons/Navigation";
 import axios from "axios";
 import {
   BrowserRouter as Router,
@@ -91,14 +93,21 @@ export default function CustomizedTables(props) {
   const useStyles = makeStyles(theme => ({
     root: {
       // width: "100%",
-      marginTop: theme.spacing(3),
+      marginTop: 100,
+      marginLeft: 300,
+      marginRight: 30,
       display: "grid",
-      marginLeft: 100,
       overflowX: "auto",
-      padding: 100
+      padding: 20
     },
     table: {
       minWidth: 700
+    },
+    fab: {
+      margin: theme.spacing(1)
+    },
+    extendedIcon: {
+      marginRight: theme.spacing(1)
     }
   }));
 
@@ -123,9 +132,17 @@ export default function CustomizedTables(props) {
 
   if (state == "previous") {
     return (
-      // <Router>
       <div>
         <Paper className={classes.root}>
+          <Fab
+            variant="extended"
+            color="primary"
+            aria-label="delete"
+            className={classes.fab}
+          >
+            <NavigationIcon className={classes.extendedIcon} />
+            Add User
+          </Fab>
           <Table className={classes.table}>
             <TableHead>
               <TableRow>

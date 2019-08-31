@@ -26,7 +26,7 @@ const useStyles = makeStyles({
     maxWidth: 345,
     marginLeft: 400,
     marginBottom: 30,
-    marginTop: 30
+    marginTop: 100
   },
   media: {
     // height: 140
@@ -51,7 +51,9 @@ export default function MediaCard(props) {
 
   function handleDeleteClose() {
     axios
-      .delete(`http://localhost:9090/users/delete/${props.user.user_id}`)
+      .delete(
+        `http://localhost:9090/users/delete/${props.location.state.user.user_id}`
+      )
       .then(res => {
         console.log(res);
       })
