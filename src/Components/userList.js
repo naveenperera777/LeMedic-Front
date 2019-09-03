@@ -134,15 +134,17 @@ export default function CustomizedTables(props) {
     return (
       <div>
         <Paper className={classes.root}>
-          <Fab
-            variant="extended"
-            color="primary"
-            aria-label="delete"
-            className={classes.fab}
-          >
-            <NavigationIcon className={classes.extendedIcon} />
-            Add User
-          </Fab>
+          <Link to={"/usermgt/create"}>
+            <Fab
+              variant="extended"
+              color="primary"
+              aria-label="delete"
+              className={classes.fab}
+            >
+              <NavigationIcon className={classes.extendedIcon} />
+              Add User
+            </Fab>
+          </Link>
           <Table className={classes.table}>
             <TableHead>
               <TableRow>

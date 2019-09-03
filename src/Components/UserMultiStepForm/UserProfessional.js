@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function FormUserDetails(props) {
+export default function UserProfessional(props) {
   const classes = useStyles();
 
   useEffect(() => {}, []);
@@ -27,15 +27,15 @@ export default function FormUserDetails(props) {
   return (
     <div>
       <form className={classes.form}>
-        <h1>Register Patient</h1>
+        <h1>Other Details</h1>
 
         <FormControl margin="normal" fullWidth>
-          <InputLabel htmlFor="name">Name</InputLabel>
+          <InputLabel htmlFor="name">Role</InputLabel>
           <Input
             id="name"
             type="text"
-            value={props.name}
-            onChange={props.handleNameChange}
+            value={props.role}
+            onChange={props.handleRoleChange}
           />
         </FormControl>
 
@@ -48,9 +48,9 @@ export default function FormUserDetails(props) {
           variant="contained"
           color="primary"
           size="medium"
-          onClick={props.stage}
+          onClick={props.handleSubmit}
         >
-          Next
+          Submit
         </Button>
       </form>
     </div>
