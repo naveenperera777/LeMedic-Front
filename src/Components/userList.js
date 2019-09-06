@@ -112,7 +112,6 @@ export default function CustomizedTables(props) {
   }));
 
   const [data, setData] = useState([]);
-  // const [count, setCount] = useState(0);
   const [state, setState] = useState("previous");
   const [logged, setLogged] = useState(true);
   const [rowUser, setrowUser] = useState({});
@@ -126,7 +125,7 @@ export default function CustomizedTables(props) {
       setData(result.data.data);
     };
     fetchData();
-  }, []);
+  }, [rowUser, setrowUser]);
 
   const classes = useStyles();
 

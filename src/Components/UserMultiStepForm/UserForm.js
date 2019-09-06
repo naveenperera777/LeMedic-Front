@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import FormUserDetails from "./FormUserDetails";
 import UserProfessional from "./UserProfessional";
 import axios from "axios";
+import { Route, Redirect } from "react-router";
 
 export default function UserForm() {
-  // // useEffect(() => {}, []);
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
 
@@ -18,24 +18,20 @@ export default function UserForm() {
 
   function handleRoleChange(event) {
     setRole(event.target.value);
-
     console.log("role", role);
   }
 
   function handleStage() {
     setStage(stage + 1);
-    // setStage(prevCount => prevCount + 1);
     console.log("stage is ", stage);
   }
   const form_data = {
-    user_id: "10",
-    nic: "965542512V",
-
+    nic: "945242512V",
     email: "test@.com",
     gender: "Male",
-    first_name: "Xavi",
-    last_name: "Melo",
-    role: "Admin"
+    first_name: name,
+    last_name: "Jr.",
+    role: role
   };
   const handleSubmit = async () => {
     const response = await axios({
@@ -43,6 +39,7 @@ export default function UserForm() {
       url: "http://localhost:9090/users/add",
       data: form_data
     });
+    setStage(stage + 1);
   };
 
   if (stage == 0) {
@@ -65,5 +62,7 @@ export default function UserForm() {
         />
       </div>
     );
+  } else {
+    return <Redirect to="/usermgt" />;
   }
 }

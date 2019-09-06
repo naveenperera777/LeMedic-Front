@@ -27,7 +27,7 @@ export default function FormUserDetails(props) {
   return (
     <div>
       <form className={classes.form}>
-        <h1>Register Patient</h1>
+        <h1>Register A User</h1>
 
         <FormControl margin="normal" fullWidth>
           <InputLabel htmlFor="name">Name</InputLabel>
