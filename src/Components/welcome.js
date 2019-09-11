@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function jediaCard() {
+export default function MediaCard() {
   return (
     <div>
       {" "}

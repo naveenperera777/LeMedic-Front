@@ -74,12 +74,15 @@ export default function ClippedDrawer() {
             </ListItem>
           </NavLink>
 
+          <NavLink to={"/consultation"}>
           <ListItem button key="fd">
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
             <ListItemText primary="Start Consultation" />
           </ListItem>
+          </NavLink>
+          
 
           <NavLink to={"/usermgt"}>
             <ListItem button key="fd">

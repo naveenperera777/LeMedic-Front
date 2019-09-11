@@ -1,52 +1,3 @@
-// import React, { useState, useEffect } from "react";
-// import axios from "axios";
-// function App() {
-//   const [data, setData] = useState([]);
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       const result = await axios("http://localhost:9090/users");
-//       console.log(result.data.data);
-//       setData(result.data.data);
-//     };
-//     fetchData();
-//   }, []);
-//   return (
-//     <div>
-//       <p>
-//         Lorem Ipsum is simply dummy text of the printing and typesetting
-//         industry. Lorem Ipsum has been the industry's standard dummy text ever
-//         since the 1500s, when an unknown printer took a galley of type and
-//         scrambled it to make a type specimen book. It has survived not only five
-//         centuries, but also the leap into electronic typesetting, remaining
-//         essentially unchanged. It was popularised in the 1960s with the release
-//         of Letraset sheets containing Lorem Ipsum passages, and more recently
-//         with desktop publishing software like Aldus PageMaker including versions
-//         of Lorem Ipsum.
-//       </p>
-//       <p>
-//         Lorem Ipsum is simply dummy text of the printing and typesetting
-//         industry. Lorem Ipsum has been the industry's standard dummy text ever
-//         since the 1500s, when an unknown printer took a galley of type and
-//         scrambled it to make a type specimen book. It has survived not only five
-//         centuries, but also the leap into electronic typesetting, remaining
-//         essentially unchanged. It was popularised in the 1960s with the release
-//         of Letraset sheets containing Lorem Ipsum passages, and more recently
-//         with desktop publishing software like Aldus PageMaker including versions
-//         of Lorem Ipsum.
-//       </p>
-//       <ul>
-//         {data.map(item => (
-//           <li key={item.user_id}>
-//             <a href={item.email}>{item.first_name}</a>
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// }
-// export default App;
-//
-
 import React, { useState, useEffect } from "react";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -92,7 +43,6 @@ export default function CustomizedTables(props) {
 
   const useStyles = makeStyles(theme => ({
     root: {
-      // width: "100%",
       marginTop: 100,
       marginLeft: 300,
       marginRight: 30,
@@ -115,8 +65,6 @@ export default function CustomizedTables(props) {
   const [state, setState] = useState("previous");
   const [logged, setLogged] = useState(true);
   const [rowUser, setrowUser] = useState({});
-
-  // const [rows, setRows] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -156,7 +104,6 @@ export default function CustomizedTables(props) {
             </TableHead>
             <TableBody>
               {data.map(row => (
-                // <Link to={"/usermgt/id"}>
                 <Link
                   to={{
                     pathname: "/usermgt/id",
@@ -184,70 +131,13 @@ export default function CustomizedTables(props) {
           </Table>
         </Paper>
       </div>
-      // </Router>
     );
   } else {
     return (
       <div>
         <h1>Lorem Ipsum is simply dummy text</h1>
         <h2>{rowUser}</h2>
-        {/* <NavLink to={"/usermgt/id"}>
-          <button onClick={() => setState("Next")}> Click </button>
-        </NavLink>
-        <switch>
-          <Route path="/usermgt/id" component={UserProfile} />
-        </switch> */}
       </div>
     );
   }
 }
-
-// import React from "react";
-// import { makeStyles } from "@material-ui/core/styles";
-// import Paper from "@material-ui/core/Paper";
-// import Grid from "@material-ui/core/Grid";
-
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     flexGrow: 1,
-//     padding: 100
-//     // marginLeft: 300
-//   },
-//   paper: {
-//     padding: theme.spacing(2),
-//     textAlign: "center",
-//     color: theme.palette.text.secondary
-//   }
-// }));
-
-// export default function CenteredGrid() {
-//   const classes = useStyles();
-
-//   return (
-//     <div className={classes.root}>
-//       <Grid container spacing={3}>
-//         <Grid item xs={12}>
-//           <Paper className={classes.paper}>xs=12</Paper>
-//         </Grid>
-//         <Grid item xs={6}>
-//           <Paper className={classes.paper}>xs=6</Paper>
-//         </Grid>
-//         <Grid item xs={6}>
-//           <Paper className={classes.paper}>xs=6</Paper>
-//         </Grid>
-//         <Grid item xs={3}>
-//           <Paper className={classes.paper}>xs=3</Paper>
-//         </Grid>
-//         <Grid item xs={3}>
-//           <Paper className={classes.paper}>xs=3</Paper>
-//         </Grid>
-//         <Grid item xs={3}>
-//           <Paper className={classes.paper}>xs=3</Paper>
-//         </Grid>
-//         <Grid item xs={3}>
-//           <Paper className={classes.paper}>xs=3</Paper>
-//         </Grid>
-//       </Grid>
-//     </div>
-//   );
-// }

@@ -34,9 +34,7 @@ const useStyles = makeStyles({
 });
 
 export default function MediaCard(props) {
-  useEffect(() => {
-    // console.log("props", props.location.state.fromNotifications);
-  }, []);
+  useEffect(() => {}, []);
 
   const [redirect, setRedirect] = useState(false);
   const [open, setOpen] = React.useState(false);

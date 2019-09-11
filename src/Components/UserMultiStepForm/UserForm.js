@@ -34,12 +34,13 @@ export default function UserForm() {
     role: role
   };
   const handleSubmit = async () => {
+    setStage(stage + 1);
+
     const response = await axios({
       method: "post",
       url: "http://localhost:9090/users/add",
       data: form_data
     });
-    setStage(stage + 1);
   };
 
   if (stage == 0) {
