@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import deburr from "lodash/deburr";
 import Autosuggest from "react-autosuggest";
 import match from "autosuggest-highlight/match";
@@ -9,8 +9,11 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Popper from "@material-ui/core/Popper";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
+import PatientProfile from "./PatientProfile";
+import { func } from "prop-types";
 
 let suggestions = [];
+// let selected_user = [];
 let selected_user = {};
 
 function renderInputComponent(inputProps) {
@@ -80,6 +83,8 @@ function getSuggestions(value) {
 }
 
 function getSuggestionValue(suggestion) {
+  // selected_user.push(suggestion);
+  // console.log("select", selected_user);
   selected_user = suggestion;
   return suggestion.last_name;
 }
@@ -113,6 +118,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function IntegrationAutosuggest() {
+  const [data, setData] = useState("text");
+
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios("http://localhost:9090/users");
@@ -181,7 +188,7 @@ export default function IntegrationAutosuggest() {
           </Paper>
         )}
       />
-      <button>{selected_user.user_id}</button>
+      <PatientProfile selected_user={selected_user} />
     </div>
   );
 }

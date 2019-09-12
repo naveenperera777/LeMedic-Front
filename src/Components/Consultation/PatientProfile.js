@@ -34,7 +34,19 @@ const useStyles = makeStyles({
 });
 
 export default function MediaCard(props) {
-  useEffect(() => {}, []);
+  let userObj = {};
+  //   useEffect(() => {
+  //     console.log("props", props.selected_user);
+  //     const user = props.selected_user;
+  //     // for (let i = 0; i < user.length; i++) {
+  //     //   userObj = user[i];
+  //     // }
+  //   });
+  const user = props.selected_user;
+  console.log("thisprop", user);
+  //   for (let i = 0; i < user.length; i++) {
+  //     userObj = user[i];
+  //   }
 
   const [redirect, setRedirect] = useState(false);
   const [open, setOpen] = React.useState(false);
@@ -49,9 +61,9 @@ export default function MediaCard(props) {
 
   function handleDeleteClose() {
     axios
-      .delete(
-        `http://localhost:9090/users/delete/${props.location.state.user.user_id}`
-      )
+      .delete
+      // `http://localhost:9090/users/delete/${props.location.state.user.user_id}`
+      ()
       .then(res => {
         console.log(res);
       })
@@ -80,11 +92,11 @@ export default function MediaCard(props) {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {props.location.state.user.first_name}{" "}
-            {props.location.state.user.last_name}
+            {/* {props.location.state.user.first_name}{" "}
+            {props.location.state.user.last_name} */}
           </Typography>
           <Typography variant="h6" color="textSecondary" component="p">
-            Consultant Physician
+            {props.selected_user.first_name} {props.selected_user.last_name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             Medical Officer
@@ -114,7 +126,6 @@ export default function MediaCard(props) {
                 Are you sure?
               </DialogContentText>
             </DialogContent> */}
-
           <DialogActions>
             <Button onClick={handleClose} color="primary">
               No
