@@ -44,9 +44,12 @@ export default function CustomizedTables(props) {
 
   const classes = useStyles();
 
-  function ChangeStepperState() {
+  function ChangeNextStepperState() {
     setstepperState(stepperState + 1);
-    console.log(stepperState);
+  }
+
+  function ChangeBackStepperState() {
+    setstepperState(stepperState - 1);
   }
 
   return (
@@ -55,7 +58,10 @@ export default function CustomizedTables(props) {
         <SearchBarConsultation currentStepperState={stepperState} />
       </Paper>
       <Paper className={classes.stepper}>
-        <StepperConsultation stepperStateFunc={ChangeStepperState} />
+        <StepperConsultation
+          stepperNextFunc={ChangeNextStepperState}
+          stepperBackFunc={ChangeBackStepperState}
+        />
       </Paper>
     </div>
   );

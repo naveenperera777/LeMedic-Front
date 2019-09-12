@@ -11,6 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import PatientProfile from "./PatientProfile";
 import { func } from "prop-types";
+import ExpansionPanelConsultation from "./ExpansionPanelConsultation";
 
 let suggestions = [];
 // let selected_user = [];
@@ -200,7 +201,7 @@ export default function IntegrationAutosuggest(props) {
     case 1:
       return (
         <div>
-          <h1>sfds</h1>
+          <ExpansionPanelConsultation selected_patient={selected_user} />
         </div>
       );
   }
