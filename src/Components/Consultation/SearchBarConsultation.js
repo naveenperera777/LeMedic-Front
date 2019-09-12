@@ -117,17 +117,22 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function IntegrationAutosuggest() {
+export default function IntegrationAutosuggest(props) {
   const [data, setData] = useState("text");
+  let stepperState = props.currentStepperState;
+
+  console.log("searchstate", props.currentStepperState);
 
   useEffect(() => {
+    console.log("searchstateuseeffect", props.currentStepperState);
+
     const fetchData = async () => {
       const result = await axios("http://localhost:9090/users");
       suggestions = result.data.data;
       console.log("suggestions", suggestions);
     };
     fetchData();
-  }, []);
+  }, [props]);
 
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -163,32 +168,40 @@ export default function IntegrationAutosuggest() {
     getSuggestionValue,
     renderSuggestion
   };
-
-  return (
-    <div className={classes.root}>
-      <Autosuggest
-        {...autosuggestProps}
-        inputProps={{
-          classes,
-          id: "react-autosuggest-simple",
-          label: "Country",
-          placeholder: "Search a country (start with a)",
-          value: state.single,
-          onChange: handleChange("single")
-        }}
-        theme={{
-          container: classes.container,
-          suggestionsContainerOpen: classes.suggestionsContainerOpen,
-          suggestionsList: classes.suggestionsList,
-          suggestion: classes.suggestion
-        }}
-        renderSuggestionsContainer={options => (
-          <Paper {...options.containerProps} square>
-            {options.children}
-          </Paper>
-        )}
-      />
-      <PatientProfile selected_user={selected_user} />
-    </div>
-  );
+  switch (stepperState) {
+    case 0:
+      return (
+        <div className={classes.root}>
+          <Autosuggest
+            {...autosuggestProps}
+            inputProps={{
+              classes,
+              id: "react-autosuggest-simple",
+              // label: "Country",
+              placeholder: "Enter a Patient Name ...",
+              value: state.single,
+              onChange: handleChange("single")
+            }}
+            theme={{
+              container: classes.container,
+              suggestionsContainerOpen: classes.suggestionsContainerOpen,
+              suggestionsList: classes.suggestionsList,
+              suggestion: classes.suggestion
+            }}
+            renderSuggestionsContainer={options => (
+              <Paper {...options.containerProps} square>
+                {options.children}
+              </Paper>
+            )}
+          />
+          <PatientProfile selected_user={selected_user} />
+        </div>
+      );
+    case 1:
+      return (
+        <div>
+          <h1>sfds</h1>
+        </div>
+      );
+  }
 }

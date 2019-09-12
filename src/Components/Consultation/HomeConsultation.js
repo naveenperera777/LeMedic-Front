@@ -14,11 +14,21 @@ import {
 } from "react-router-dom";
 import { Route, Redirect } from "react-router";
 import SearchBarConsultation from "./SearchBarConsultation";
+import StepperConsultation from "./StepperConsultation";
 
 export default function CustomizedTables(props) {
   const useStyles = makeStyles(theme => ({
     root: {
-      // width: "100%",
+      height: 500,
+      marginTop: 100,
+      marginLeft: 300,
+      marginRight: 30,
+      display: "grid",
+      overflowX: "auto",
+      padding: 20
+    },
+    stepper: {
+      height: 200,
       marginTop: 100,
       marginLeft: 300,
       marginRight: 30,
@@ -28,16 +38,24 @@ export default function CustomizedTables(props) {
     }
   }));
 
-  const [data, setData] = useState([]);
+  const [stepperState, setstepperState] = useState(0);
 
   useEffect(() => {}, []);
 
   const classes = useStyles();
 
+  function ChangeStepperState() {
+    setstepperState(stepperState + 1);
+    console.log(stepperState);
+  }
+
   return (
     <div>
       <Paper className={classes.root}>
-        <SearchBarConsultation />
+        <SearchBarConsultation currentStepperState={stepperState} />
+      </Paper>
+      <Paper className={classes.stepper}>
+        <StepperConsultation stepperStateFunc={ChangeStepperState} />
       </Paper>
     </div>
   );

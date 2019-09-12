@@ -23,32 +23,21 @@ import axios from "axios";
 
 const useStyles = makeStyles({
   card: {
-    maxWidth: 345,
-    marginLeft: 400,
+    maxWidth: 200,
+    marginLeft: 275,
     marginBottom: 30,
-    marginTop: 100
+    marginTop: 20
+    // height: 400
   },
   media: {
-    // height: 140
+    maxHeight: 200
   }
 });
 
 export default function MediaCard(props) {
-  let userObj = {};
-  //   useEffect(() => {
-  //     console.log("props", props.selected_user);
-  //     const user = props.selected_user;
-  //     // for (let i = 0; i < user.length; i++) {
-  //     //   userObj = user[i];
-  //     // }
-  //   });
   const user = props.selected_user;
   console.log("thisprop", user);
-  //   for (let i = 0; i < user.length; i++) {
-  //     userObj = user[i];
-  //   }
 
-  const [redirect, setRedirect] = useState(false);
   const [open, setOpen] = React.useState(false);
 
   function handleClickOpen() {
@@ -59,27 +48,8 @@ export default function MediaCard(props) {
     setOpen(false);
   }
 
-  function handleDeleteClose() {
-    axios
-      .delete
-      // `http://localhost:9090/users/delete/${props.location.state.user.user_id}`
-      ()
-      .then(res => {
-        console.log(res);
-      })
-      .catch(function(err) {
-        console.log("The error", err);
-      });
-
-    setOpen(false);
-    setRedirect(true);
-  }
-
   const classes = useStyles();
 
-  if (redirect) {
-    return <Redirect to="/usermgt" />;
-  }
   return (
     // <Router>
     <Card className={classes.card}>
@@ -87,7 +57,7 @@ export default function MediaCard(props) {
         <CardMedia
           className={classes.media}
           style={{ height: 300 }}
-          image={require("/home/naveen/Documents/MCS/medic-front/medic-front/src/Img/male-character-with-hat-and-camera-free-vector.jpg")}
+          image={require("/home/naveen/Documents/MCS/medic-front/medic-front/src/Img/download.png")}
           title="Contemplative Reptile"
         />
         <CardContent>
@@ -99,43 +69,13 @@ export default function MediaCard(props) {
             {props.selected_user.first_name} {props.selected_user.last_name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Medical Officer
+            {props.selected_user.gender}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {/* {props.user.email} */}
+            {props.selected_user.nic}
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Edit
-        </Button>
-        <Button size="small" color="secondary" onClick={handleClickOpen}>
-          Delete
-        </Button>
-
-        <Dialog
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">{"Are you sure?"}</DialogTitle>
-          {/* <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                Are you sure?
-              </DialogContentText>
-            </DialogContent> */}
-          <DialogActions>
-            <Button onClick={handleClose} color="primary">
-              No
-            </Button>
-            <Button onClick={handleDeleteClose} color="primary" autoFocus>
-              Yes
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </CardActions>
     </Card>
     // </Router>
   );
