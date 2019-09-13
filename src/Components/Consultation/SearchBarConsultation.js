@@ -12,6 +12,10 @@ import axios from "axios";
 import PatientProfile from "./PatientProfile";
 import { func } from "prop-types";
 import ExpansionPanelConsultation from "./ExpansionPanelConsultation";
+import DiagnosisConsultation from "./DiagnosisConsultation";
+import MedicationsConsultation from "./MedicationsConsultation";
+import PricingConsultation from "./PricingConsultation";
+import ConfirmationConsultation from "./Confirmation.js";
 
 let suggestions = [];
 // let selected_user = [];
@@ -120,7 +124,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function IntegrationAutosuggest(props) {
   const [data, setData] = useState("text");
-  let stepperState = props.currentStepperState;
+  // let stepperState = props.currentStepperState;
+  let stepperState = 2;
 
   console.log("searchstate", props.currentStepperState);
 
@@ -136,11 +141,15 @@ export default function IntegrationAutosuggest(props) {
   }, [props]);
 
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
   const [state, setState] = React.useState({
     single: "",
     popper: ""
   });
+  const [record, setRecord] = React.useState({
+    symptoms: "",
+    medication: ""
+  });
+  const [Diagnosis, setDia] = useState("");
 
   const [stateSuggestions, setSuggestions] = React.useState([]);
 
@@ -160,6 +169,20 @@ export default function IntegrationAutosuggest(props) {
       [name]: newValue
     });
   };
+
+  function handleSymptomChange(event) {
+    console.log("event", event.target.id);
+    setRecord({
+      symptoms: event.target.value
+    });
+  }
+
+  function handleMedicationChange(event) {
+    setRecord({
+      ...record,
+      medication: event.target.value
+    });
+  }
 
   const autosuggestProps = {
     renderInputComponent,
@@ -202,6 +225,36 @@ export default function IntegrationAutosuggest(props) {
       return (
         <div>
           <ExpansionPanelConsultation selected_patient={selected_user} />
+        </div>
+      );
+    case 2:
+      return (
+        <div>
+          <h1>Diagnosis</h1>
+          <DiagnosisConsultation handleSymptomChange={handleSymptomChange} />
+        </div>
+      );
+    case 3:
+      return (
+        <div>
+          <h1>Medications</h1>
+          <MedicationsConsultation
+            handleMedicationChange={handleMedicationChange}
+          />
+        </div>
+      );
+    case 4:
+      return (
+        <div>
+          <h1>Pricing</h1>
+          <PricingConsultation />
+        </div>
+      );
+    case 5:
+      return (
+        <div>
+          <h1>Confirmation</h1>
+          <ConfirmationConsultation record={record} diagnosis={Diagnosis} />
         </div>
       );
   }

@@ -30,7 +30,7 @@ const useStyles = makeStyles({
     // height: 400
   },
   media: {
-    maxHeight: 200
+    maxHeight: 175
   }
 });
 

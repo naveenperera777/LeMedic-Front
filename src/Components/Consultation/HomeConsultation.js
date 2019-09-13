@@ -19,8 +19,8 @@ import StepperConsultation from "./StepperConsultation";
 export default function CustomizedTables(props) {
   const useStyles = makeStyles(theme => ({
     root: {
-      height: 500,
-      marginTop: 100,
+      height: 430,
+      marginTop: 75,
       marginLeft: 300,
       marginRight: 30,
       display: "grid",
@@ -29,7 +29,7 @@ export default function CustomizedTables(props) {
     },
     stepper: {
       height: 200,
-      marginTop: 100,
+      marginTop: 10,
       marginLeft: 300,
       marginRight: 30,
       display: "grid",

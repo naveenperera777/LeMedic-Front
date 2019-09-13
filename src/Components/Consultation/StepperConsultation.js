@@ -21,16 +21,19 @@ const useStyles = makeStyles(theme => ({
 
 function getSteps() {
   return [
-    "Select master blaster campaign settings",
-    "Create an ad group",
-    "Create an ad"
+    "Selecting a Patient ",
+    "View Past Medical Records",
+    "Diagnosis",
+    "Medications",
+    "Pricing",
+    "Finish"
   ];
 }
 
 function getStepContent(stepIndex) {
   switch (stepIndex) {
     case 0:
-      return "Select campaign settings...";
+      return "Select Patient Profile";
     case 1:
       return "What is an ad group anyways?";
     case 2:
