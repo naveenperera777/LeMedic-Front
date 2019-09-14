@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     maxWidth: 345,
     marginLeft: 100,
     marginBottom: 30,
-    marginTop: 100
+    marginTop: 10
   }
 });
 
@@ -26,13 +26,29 @@ export default function FormUserDetails(props) {
     <div>
       <form className={classes.form}>
         <FormControl margin="normal" fullWidth>
-          <InputLabel htmlFor="name">Symptoms</InputLabel>
+          <InputLabel htmlFor="name">Complain</InputLabel>
           <Input
             id="name"
             type="text"
             // value={props.name}
             onChange={props.handleSymptomChange}
           />
+        </FormControl>
+        <FormControl margin="normal" fullWidth>
+          <InputLabel htmlFor="name">Signs</InputLabel>
+          <Input id="name" type="text" />
+        </FormControl>
+        <FormControl margin="normal" fullWidth>
+          <InputLabel htmlFor="name">General Examination</InputLabel>
+          <Input id="name" type="text" />
+        </FormControl>
+        <FormControl margin="normal" fullWidth>
+          <InputLabel htmlFor="name">Systemic Examination</InputLabel>
+          <Input id="name" type="text" />
+        </FormControl>
+        <FormControl margin="normal" fullWidth>
+          <InputLabel htmlFor="name">Investigation</InputLabel>
+          <Input id="name" type="text" />
         </FormControl>
       </form>
     </div>

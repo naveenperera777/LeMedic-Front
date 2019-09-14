@@ -14,6 +14,12 @@ const useStyles = makeStyles({
     marginLeft: 100,
     marginBottom: 30,
     marginTop: 100
+  },
+  followup: {
+    maxWidth: 345,
+    marginLeft: 800,
+    marginBottom: 30,
+    marginTop: -100
   }
 });
 
@@ -27,6 +33,12 @@ export default function FormUserDetails(props) {
       <form className={classes.form}>
         <FormControl margin="normal" fullWidth>
           <InputLabel htmlFor="name">Pricing</InputLabel>
+          <Input id="name" type="text" />
+        </FormControl>
+      </form>
+      <form className={classes.followup}>
+        <FormControl margin="normal" fullWidth>
+          <InputLabel htmlFor="name">Followup</InputLabel>
           <Input id="name" type="text" />
         </FormControl>
       </form>

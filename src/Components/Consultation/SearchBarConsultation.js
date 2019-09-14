@@ -125,7 +125,7 @@ const useStyles = makeStyles(theme => ({
 export default function IntegrationAutosuggest(props) {
   const [data, setData] = useState("text");
   // let stepperState = props.currentStepperState;
-  let stepperState = 2;
+  let stepperState = 4;
 
   console.log("searchstate", props.currentStepperState);
 
@@ -170,18 +170,14 @@ export default function IntegrationAutosuggest(props) {
     });
   };
 
-  function handleSymptomChange(event) {
-    console.log("event", event.target.id);
-    setRecord({
-      symptoms: event.target.value
-    });
-  }
-
-  function handleMedicationChange(event) {
-    setRecord({
-      ...record,
-      medication: event.target.value
-    });
+  function handleMedicalRecordChange(event) {
+    // console.log("event", event.target.id);
+    // switch(event.target.id){
+    //   case
+    // }
+    // setRecord({
+    //   symptoms: event.target.value
+    // });
   }
 
   const autosuggestProps = {
@@ -231,15 +227,17 @@ export default function IntegrationAutosuggest(props) {
       return (
         <div>
           <h1>Diagnosis</h1>
-          <DiagnosisConsultation handleSymptomChange={handleSymptomChange} />
+          <DiagnosisConsultation
+          // handleSymptomChange={handleSymptomChange}
+          />
         </div>
       );
     case 3:
       return (
         <div>
-          <h1>Medications</h1>
+          <h1>Treatment</h1>
           <MedicationsConsultation
-            handleMedicationChange={handleMedicationChange}
+          // handleMedicationChange={handleMedicationChange}
           />
         </div>
       );
