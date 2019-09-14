@@ -124,8 +124,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function IntegrationAutosuggest(props) {
   const [data, setData] = useState("text");
-  // let stepperState = props.currentStepperState;
-  let stepperState = 4;
+  let stepperState = props.currentStepperState;
+  // let stepperState = 4;
 
   console.log("searchstate", props.currentStepperState);
 
