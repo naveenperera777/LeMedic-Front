@@ -129,7 +129,11 @@ export default function IntegrationAutosuggest(props) {
   console.log("searchstate", props.currentStepperState);
 
   useEffect(() => {
-    console.log("searchstateuseeffect", props.currentStepperState);
+    console.log("stepper state", props.currentStepperState);
+    console.log("diagnosis_State", Diagnosis);
+    console.log("medication_State", Medication);
+
+
 
     const fetchData = async () => {
       const result = await axios("http://localhost:9090/patient/all");
@@ -149,9 +153,9 @@ export default function IntegrationAutosuggest(props) {
     medication: ""
   });
   const [Diagnosis, setDiagnosis] =React.useState({
-
   });
-
+  const [Medication, setMedication] =React.useState({
+  });
   const [stateSuggestions, setSuggestions] = React.useState([]);
 
   const handleSuggestionsFetchRequested = ({ value }) => {
@@ -175,21 +179,19 @@ export default function IntegrationAutosuggest(props) {
   const diagnosisChangeHandler = name => (event) => {
     console.log("event---> : " , name , " value:--->", event.target.value)
     setDiagnosis({
-      ...state,
+      ...Diagnosis,
       [name]: event.target.value
     });
   };
 
-  function handleMedicalRecordChange(event) {
-    // console.log("event", event.target.id);
-    // switch(event.target.id){
-    //   case
-    // }
-    // setRecord({
-    //   symptoms: event.target.value
-    // });
-  }
-
+  const medicationChangeHandler = name => (event) => {
+    console.log("event---> : " , name , " value:--->", event.target.value)
+    setMedication({
+      ...Medication,
+      [name]: event.target.value
+    });
+  };
+  
   const autosuggestProps = {
     renderInputComponent,
     suggestions: stateSuggestions,
@@ -238,7 +240,6 @@ export default function IntegrationAutosuggest(props) {
           <h1>Diagnosis</h1>
           <DiagnosisConsultation
           handleDiagnosisChange = {diagnosisChangeHandler}
-          // handleSymptomChange={handleSymptomChange}
           />
         </div>
       );
@@ -247,7 +248,7 @@ export default function IntegrationAutosuggest(props) {
         <div>
           <h1>Treatment</h1>
           <MedicationsConsultation
-          // handleMedicationChange={handleMedicationChange}
+          handleMedicationChange={medicationChangeHandler}
           />
         </div>
       );

@@ -28,19 +28,26 @@ export default function FormUserDetails(props) {
         <FormControl margin="normal" fullWidth>
           <InputLabel htmlFor="name">Medical Management</InputLabel>
           <Input
-            id="name"
+            id="medicalmgt"
             type="text"
-            // value={props.name}
-            onChange={props.handleMedicationChange}
+            onChange={props.handleMedicationChange("medicalmgt")}
           />
         </FormControl>
         <FormControl margin="normal" fullWidth>
           <InputLabel htmlFor="name">Surgical Management (Optional)</InputLabel>
-          <Input id="name" type="text" />
+            <Input
+            id="surgicalmgt"
+            type="text"
+            onChange={props.handleMedicationChange("surgicalmgt")}
+          />
         </FormControl>
         <FormControl margin="normal" fullWidth>
           <InputLabel htmlFor="name">Special Remarks (Optional)</InputLabel>
-          <Input id="name" type="text" />
+            <Input
+            id="remarks"
+            type="text"
+            onChange={props.handleMedicationChange("remarks")}
+          />
         </FormControl>
       </form>
     </div>
