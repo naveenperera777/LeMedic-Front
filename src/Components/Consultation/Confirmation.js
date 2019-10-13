@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ControlledExpansionPanels() {
+export default function ControlledExpansionPanels(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -38,12 +38,16 @@ export default function ControlledExpansionPanels() {
           id="panel1bh-header"
         >
           <Typography className={classes.heading}>Patient Information</Typography>
-          <Typography className={classes.secondaryHeading}>I am an expansion panel</Typography>
+          <Typography className={classes.secondaryHeading}>Patient Information Summary</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat. Aliquam eget
-            maximus est, id dignissim quam.
+           Name :  {props.patient.first_name} {props.patient.last_name}
+           </Typography>       
+        </ExpansionPanelDetails>
+        <ExpansionPanelDetails>
+        <Typography>
+           NIC:  {props.patient.nic}
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -55,13 +59,12 @@ export default function ControlledExpansionPanels() {
         >
           <Typography className={classes.heading}>Diagnosis</Typography>
           <Typography className={classes.secondaryHeading}>
-            You are currently not an owner
+            View Diagnosis Summary
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            Donec placerat, lectus sed mattis semper, neque lectus feugiat lectus, varius pulvinar
-            diam eros in elit. Pellentesque convallis laoreet laoreet.
+            {props.diagnosisData.complain}
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -73,13 +76,12 @@ export default function ControlledExpansionPanels() {
         >
           <Typography className={classes.heading}>Medications</Typography>
           <Typography className={classes.secondaryHeading}>
-            Filtering has been entirely disabled for whole web server
+          View Medication Summary
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas eros,
-            vitae egestas augue. Duis vel est augue.
+          {props.medicationData.medicalmgt}
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -91,13 +93,12 @@ export default function ControlledExpansionPanels() {
         >
           <Typography className={classes.heading}>Pricing</Typography>
           <Typography className={classes.secondaryHeading}>
-            Amount To be Paid
+            View Cost Breakdown
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas eros,
-            vitae egestas augue. Duis vel est augue.
+           {props.pricingData.total}
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>

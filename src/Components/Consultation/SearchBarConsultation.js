@@ -123,7 +123,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function IntegrationAutosuggest(props) {
-  const [data, setData] = useState("text");
   let stepperState = props.currentStepperState;
 
   console.log("searchstate", props.currentStepperState);
@@ -146,10 +145,6 @@ export default function IntegrationAutosuggest(props) {
   const [state, setState] = React.useState({
     single: "",
     popper: ""
-  });
-  const [record, setRecord] = React.useState({
-    symptoms: "",
-    medication: ""
   });
   const [Diagnosis, setDiagnosis] =React.useState({
   });
@@ -276,7 +271,12 @@ export default function IntegrationAutosuggest(props) {
       return (
         <div>
           <h1>Confirmation</h1>
-          <ConfirmationConsultation record={record} diagnosis={Diagnosis} />
+          <ConfirmationConsultation 
+          diagnosisData={Diagnosis}
+          medicationData={Medication}
+          pricingData={Pricing}
+          patient={selected_user}
+          />
         </div>
       );
   }
