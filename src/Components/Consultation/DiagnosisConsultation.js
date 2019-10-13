@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+
 import {
   FormControl,
   InputLabel,
@@ -20,7 +22,12 @@ const useStyles = makeStyles({
 export default function FormUserDetails(props) {
   const classes = useStyles();
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    console.log("handleChangeDiagnosis", state.complain);
+  }, []);
+
+  const [state, setState] = React.useState({
+  });
 
   return (
     <div>
@@ -28,27 +35,42 @@ export default function FormUserDetails(props) {
         <FormControl margin="normal" fullWidth>
           <InputLabel htmlFor="name">Complain</InputLabel>
           <Input
-            id="name"
+            id="complain"
             type="text"
-            // value={props.name}
-            onChange={props.handleSymptomChange}
+            onChange={props.handleDiagnosisChange("complain")}
           />
         </FormControl>
         <FormControl margin="normal" fullWidth>
           <InputLabel htmlFor="name">Signs</InputLabel>
-          <Input id="name" type="text" />
+            <Input
+            id="signs"
+            type="text"
+            onChange={props.handleDiagnosisChange("signs")}
+          />
         </FormControl>
         <FormControl margin="normal" fullWidth>
           <InputLabel htmlFor="name">General Examination</InputLabel>
-          <Input id="name" type="text" />
+            <Input
+            id="general"
+            type="text"
+            onChange={props.handleDiagnosisChange("general")}
+          />
         </FormControl>
         <FormControl margin="normal" fullWidth>
           <InputLabel htmlFor="name">Systemic Examination</InputLabel>
-          <Input id="name" type="text" />
+                  <Input
+            id="systemic"
+            type="text"
+            onChange={props.handleDiagnosisChange("systemic")}
+          />
         </FormControl>
         <FormControl margin="normal" fullWidth>
           <InputLabel htmlFor="name">Investigation</InputLabel>
-          <Input id="name" type="text" />
+                  <Input
+            id="investigation"
+            type="text"
+            onChange={props.handleDiagnosisChange("investigation")}
+          />
         </FormControl>
       </form>
     </div>

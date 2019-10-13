@@ -75,7 +75,7 @@ export default function MediaCard(props) {
         <CardMedia
           className={classes.media}
           style={{ height: 300 }}
-          image={require("/home/naveen/Documents/MCS/medic-front/medic-front/src/Img/male-character-with-hat-and-camera-free-vector.jpg")}
+          image={require("/home/naveenthe/Documents/Medic/LeMedic-Front/src/Img/male-character-with-hat-and-camera-free-vector.jpg")}
           title="Contemplative Reptile"
         />
         <CardContent>

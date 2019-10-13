@@ -23,7 +23,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ControlledExpansionPanels(props) {
-  const patient_id = props.selected_patient.user_id;
+  const patient_id = props.selected_patient.patient_id;
+  console.log("Patient object ",props.selected_patient)
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [medical_records, setMedical_records] = useState([]);
@@ -42,10 +43,12 @@ export default function ControlledExpansionPanels(props) {
   const handleChange = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+  console.log("medical records", medical_records.length);
 
+  if (!medical_records.length == 0) {    
   return (
     <div className={classes.root}>
-      {medical_records.map(record => {
+        {medical_records.map(record => {
         // <li key={station.symptoms}> {station.symptoms} </li>;
         return (
           <ExpansionPanel
@@ -75,4 +78,14 @@ export default function ControlledExpansionPanels(props) {
       })}
     </div>
   );
+  } else {
+  return (<div>
+    <h1>
+    No Records Found!   
+    </h1>
+  </div>)
+}
+
+  
+
 }

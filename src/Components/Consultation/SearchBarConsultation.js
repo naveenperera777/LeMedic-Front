@@ -125,7 +125,6 @@ const useStyles = makeStyles(theme => ({
 export default function IntegrationAutosuggest(props) {
   const [data, setData] = useState("text");
   let stepperState = props.currentStepperState;
-  // let stepperState = 4;
 
   console.log("searchstate", props.currentStepperState);
 
@@ -133,7 +132,7 @@ export default function IntegrationAutosuggest(props) {
     console.log("searchstateuseeffect", props.currentStepperState);
 
     const fetchData = async () => {
-      const result = await axios("http://localhost:9090/users");
+      const result = await axios("http://localhost:9090/patient/all");
       suggestions = result.data.data;
       console.log("suggestions", suggestions);
     };
@@ -149,7 +148,9 @@ export default function IntegrationAutosuggest(props) {
     symptoms: "",
     medication: ""
   });
-  const [Diagnosis, setDia] = useState("");
+  const [Diagnosis, setDiagnosis] =React.useState({
+
+  });
 
   const [stateSuggestions, setSuggestions] = React.useState([]);
 
@@ -167,6 +168,15 @@ export default function IntegrationAutosuggest(props) {
     setState({
       ...state,
       [name]: newValue
+    });
+  };
+
+
+  const diagnosisChangeHandler = name => (event) => {
+    console.log("event---> : " , name , " value:--->", event.target.value)
+    setDiagnosis({
+      ...state,
+      [name]: event.target.value
     });
   };
 
@@ -196,8 +206,7 @@ export default function IntegrationAutosuggest(props) {
             {...autosuggestProps}
             inputProps={{
               classes,
-              id: "react-autosuggest-simple",
-              // label: "Country",
+              id: "react-autosuggest-simple",       
               placeholder: "Enter a Patient Name ...",
               value: state.single,
               onChange: handleChange("single")
@@ -228,6 +237,7 @@ export default function IntegrationAutosuggest(props) {
         <div>
           <h1>Diagnosis</h1>
           <DiagnosisConsultation
+          handleDiagnosisChange = {diagnosisChangeHandler}
           // handleSymptomChange={handleSymptomChange}
           />
         </div>
