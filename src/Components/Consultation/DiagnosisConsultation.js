@@ -38,6 +38,7 @@ export default function FormUserDetails(props) {
             id="complain"
             type="text"
             onChange={props.handleDiagnosisChange("complain")}
+            value={props.diagnosisData.complain}
           />
         </FormControl>
         <FormControl margin="normal" fullWidth>
@@ -46,6 +47,7 @@ export default function FormUserDetails(props) {
             id="signs"
             type="text"
             onChange={props.handleDiagnosisChange("signs")}
+            value={props.diagnosisData.signs}
           />
         </FormControl>
         <FormControl margin="normal" fullWidth>
@@ -54,6 +56,7 @@ export default function FormUserDetails(props) {
             id="general"
             type="text"
             onChange={props.handleDiagnosisChange("general")}
+            value={props.diagnosisData.general}
           />
         </FormControl>
         <FormControl margin="normal" fullWidth>
@@ -62,6 +65,7 @@ export default function FormUserDetails(props) {
             id="systemic"
             type="text"
             onChange={props.handleDiagnosisChange("systemic")}
+            value={props.diagnosisData.systemic}
           />
         </FormControl>
         <FormControl margin="normal" fullWidth>
@@ -70,6 +74,7 @@ export default function FormUserDetails(props) {
             id="investigation"
             type="text"
             onChange={props.handleDiagnosisChange("investigation")}
+            value={props.diagnosisData.investigation}
           />
         </FormControl>
       </form>

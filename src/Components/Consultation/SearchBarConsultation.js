@@ -132,8 +132,7 @@ export default function IntegrationAutosuggest(props) {
     console.log("stepper state", props.currentStepperState);
     console.log("diagnosis_State", Diagnosis);
     console.log("medication_State", Medication);
-
-
+    console.log("pricing_state", Pricing);
 
     const fetchData = async () => {
       const result = await axios("http://localhost:9090/patient/all");
@@ -155,6 +154,8 @@ export default function IntegrationAutosuggest(props) {
   const [Diagnosis, setDiagnosis] =React.useState({
   });
   const [Medication, setMedication] =React.useState({
+  });
+  const [Pricing, setPricing] =React.useState({
   });
   const [stateSuggestions, setSuggestions] = React.useState([]);
 
@@ -183,11 +184,19 @@ export default function IntegrationAutosuggest(props) {
       [name]: event.target.value
     });
   };
-
+  
   const medicationChangeHandler = name => (event) => {
     console.log("event---> : " , name , " value:--->", event.target.value)
     setMedication({
       ...Medication,
+      [name]: event.target.value
+    });
+  };
+
+  const pricingChangeHandler = name => (event) => {
+    console.log("event---> : " , name , " value:--->", event.target.value)
+    setPricing({
+      ...Pricing,
       [name]: event.target.value
     });
   };
@@ -240,6 +249,7 @@ export default function IntegrationAutosuggest(props) {
           <h1>Diagnosis</h1>
           <DiagnosisConsultation
           handleDiagnosisChange = {diagnosisChangeHandler}
+          diagnosisData = {Diagnosis}
           />
         </div>
       );
@@ -249,6 +259,7 @@ export default function IntegrationAutosuggest(props) {
           <h1>Treatment</h1>
           <MedicationsConsultation
           handleMedicationChange={medicationChangeHandler}
+          medicationData = {Medication}
           />
         </div>
       );
@@ -256,7 +267,9 @@ export default function IntegrationAutosuggest(props) {
       return (
         <div>
           <h1>Pricing</h1>
-          <PricingConsultation />
+          <PricingConsultation 
+          handlePricingChange={pricingChangeHandler}
+          pricingData = {Pricing}/>
         </div>
       );
     case 5:

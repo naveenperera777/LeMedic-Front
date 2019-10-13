@@ -31,6 +31,7 @@ export default function FormUserDetails(props) {
             id="medicalmgt"
             type="text"
             onChange={props.handleMedicationChange("medicalmgt")}
+            value={props.medicationData.medicalmgt}
           />
         </FormControl>
         <FormControl margin="normal" fullWidth>
@@ -39,6 +40,7 @@ export default function FormUserDetails(props) {
             id="surgicalmgt"
             type="text"
             onChange={props.handleMedicationChange("surgicalmgt")}
+            value={props.medicationData.surgicalmgt}
           />
         </FormControl>
         <FormControl margin="normal" fullWidth>
@@ -47,6 +49,8 @@ export default function FormUserDetails(props) {
             id="remarks"
             type="text"
             onChange={props.handleMedicationChange("remarks")}
+            value={props.medicationData.remarks}
+
           />
         </FormControl>
       </form>

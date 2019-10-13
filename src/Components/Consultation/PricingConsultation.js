@@ -32,14 +32,47 @@ export default function FormUserDetails(props) {
     <div>
       <form className={classes.form}>
         <FormControl margin="normal" fullWidth>
-          <InputLabel htmlFor="name">Pricing</InputLabel>
-          <Input id="name" type="text" />
+          <InputLabel htmlFor="consultationFee">Consultation Fees</InputLabel>
+          <Input id="consultationFee" type="text" 
+            onChange={props.handlePricingChange("consultationFee")}
+            value={props.pricingData.consultationFee}
+          />
+        </FormControl>
+      </form>
+      <form className={classes.form}>
+        <FormControl margin="normal" fullWidth>
+          <InputLabel htmlFor="medicationFee">Fees for Medications (Optional)</InputLabel>
+          <Input id="medicationFee" type="text" 
+            onChange={props.handlePricingChange("medicationFee")}
+            value={props.pricingData.medicationFee}
+          />
+        </FormControl>
+      </form>
+      <form className={classes.form}>
+        <FormControl margin="normal" fullWidth>
+          <InputLabel htmlFor="tax">Tax Percentage (Optional)</InputLabel>
+          <Input id="tax" type="text" 
+            onChange={props.handlePricingChange("tax")}
+            value={props.pricingData.tax}
+          />
+        </FormControl>
+      </form>
+      <form className={classes.form}>
+        <FormControl margin="normal" fullWidth>
+          <InputLabel htmlFor="miscellaneous">Miscellaneous (Optional)</InputLabel>
+          <Input id="miscellaneous" type="text" 
+                      onChange={props.handlePricingChange("miscellaneous")}
+            value={props.pricingData.miscellaneous}
+          />
         </FormControl>
       </form>
       <form className={classes.followup}>
-        <FormControl margin="normal" fullWidth>
-          <InputLabel htmlFor="name"></InputLabel>
-          <Input id="name" type="date" />
+      <FormControl margin="normal" fullWidth>
+          <InputLabel htmlFor="total">Total </InputLabel>
+          <Input id="total" type="text" 
+                      onChange={props.handlePricingChange("total")}
+            value={props.pricingData.total}
+          />
         </FormControl>
       </form>
     </div>
