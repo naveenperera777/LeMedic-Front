@@ -5,6 +5,7 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import axios from "axios";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -35,9 +36,15 @@ function getStepContent(stepIndex) {
     case 0:
       return "Select Patient Profile";
     case 1:
-      return "What is an ad group anyways?";
+      return "Take a look at your Patient's history";
     case 2:
-      return "This is the bit I really care about!";
+      return "Let's Diagnose your Patient";
+    case 3:
+      return "Prescribe medications to your Patient";
+    case 4:
+      return "Time to have your payment";
+    case 5:
+      return "Take a look at the Summary before you confirm";  
     default:
       return "Uknown stepIndex";
   }
@@ -61,7 +68,7 @@ export default function HorizontalLabelPositionBelowStepper(props) {
     setActiveStep(0);
   }
 
-  return (
+   return (
     <div className={classes.root}>
       <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map(label => (

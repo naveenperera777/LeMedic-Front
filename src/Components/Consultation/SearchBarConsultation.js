@@ -124,6 +124,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function IntegrationAutosuggest(props) {
   let stepperState = props.currentStepperState;
+  // let stepperState = 5;
+
 
   console.log("searchstate", props.currentStepperState);
 
@@ -153,6 +155,9 @@ export default function IntegrationAutosuggest(props) {
   const [Pricing, setPricing] =React.useState({
   });
   const [stateSuggestions, setSuggestions] = React.useState([]);
+
+  const [confirmation, setConfirmation] = useState(false);
+
 
   const handleSuggestionsFetchRequested = ({ value }) => {
     setSuggestions(getSuggestions(value));
@@ -195,7 +200,15 @@ export default function IntegrationAutosuggest(props) {
       [name]: event.target.value
     });
   };
-  
+
+   async function saveMedicalRecord(){    
+      setTimeout( async function(){
+        const result = await axios("http://localhost:9090/patient/all");
+      setConfirmation(true);    
+      console.log("result", result.data.data);
+      },3000)
+  }
+
   const autosuggestProps = {
     renderInputComponent,
     suggestions: stateSuggestions,
@@ -204,6 +217,15 @@ export default function IntegrationAutosuggest(props) {
     getSuggestionValue,
     renderSuggestion
   };
+
+  if(confirmation){
+    return(
+       <div>
+         <h1>Saved.....</h1>
+       </div>
+     )  
+     }
+         
   switch (stepperState) {
     case 0:
       return (
@@ -279,5 +301,13 @@ export default function IntegrationAutosuggest(props) {
           />
         </div>
       );
+      case 6:
+          saveMedicalRecord();
+        return(
+          <div>
+            <h1>Awaiting Confirmation.....</h1>
+          </div>
+        )
+
   }
 }
