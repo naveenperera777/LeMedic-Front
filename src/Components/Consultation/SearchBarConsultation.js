@@ -16,6 +16,7 @@ import DiagnosisConsultation from "./DiagnosisConsultation";
 import MedicationsConsultation from "./MedicationsConsultation";
 import PricingConsultation from "./PricingConsultation";
 import ConfirmationConsultation from "./Confirmation.js";
+import { async } from "q";
 
 let suggestions = [];
 // let selected_user = [];
@@ -207,6 +208,10 @@ export default function IntegrationAutosuggest(props) {
       setConfirmation(true);    
       console.log("result", result.data.data);
       },3000)
+  }
+
+  async function editRecord(){
+    
   }
 
   const autosuggestProps = {
